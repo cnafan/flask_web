@@ -1,0 +1,17 @@
+<!-- extend base layout -->
+{% extends "base.html" %} {% block content %}
+<table>
+    <tr valign="top">
+        <td>
+            <h1>用户: {{user.username}}</h1>
+            {% if user.about_me %}<p>{{user.about_me}}</p>{% endif %}
+            {% if user.last_seen %}<p><i>最后一次登录时间: {{user.last_seen}}</i></p>{% endif %}
+            <!--只有当用户浏览自己的用户信息页的时候才会出现，浏览其他用户的时候是不会出现的-->
+            {% if user.id == g.user.id %}<p><a href="{{url_for('edit')}}">Edit</a></p>{% endif %}
+        </td>
+    </tr>
+</table>
+<hr> 
+{% for post in posts %} 
+	{% include 'post.html' %}
+{% endfor %} {% endblock %}

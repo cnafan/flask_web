@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    {% if title %}
+    <title>{{title}} - microblog</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+</head>
+
+<body>
+    <!--在模版中添加登出的链接-->
+    <div>        <a href="{{ url_for('index') }}">首页</a>
+        {% if g.user.is_authenticated %}<!--#去掉（），'bool' object is not callable-->
+        |<a href="{{ url_for('user') }}">个人中心</a></li> 
+        |<a href="{{ url_for('logout') }}">退出帐号</a></li> 
+
+        {% else %}
+        |<a href="{{ url_for('login') }}">登录</a></li>
+        {% endif %}
+    </div>
+    <hr>
+    <!--flash显示闪现消息-->
+    {% with messages = get_flashed_messages() %} 
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %} 
+    {% endwith %}
+    <!--flash-->
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>

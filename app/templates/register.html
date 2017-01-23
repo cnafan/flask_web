@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}注册{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1> 注册新用户</h1>
+</div>
+<form name="register" method="POST">
+	{{form.hidden_tag()}}
+	 
+	<p>
+		*{{form.email.label}}<br>
+		{{form.email}}{{form.email.errors[0]}}
+	</p>
+	<p>
+	*{{form.username.label}}<br>{{form.username}} {{form.username.errors[0]}}
+	</p>
+	<p>
+		*{{form.password.label}}<br>{{form.password}} {{form.password.errors[0]}}
+	</p>
+	<p>
+		*{{form.password2.label}}<br>{{form.password2}} {{form.password2.errors[0]}}
+	</p>
+	<p>
+	{{form.phone.label}}<br>{{form.phone}} {{form.phone.errors[0]}}
+	</p>
+	 <P>
+    	*为必填项
+    </P>
+	<p>
+	<input type="submit" value="注册"></input>
+	</p>
+
+	<p>
+        已注册？<a href="{{url_for('login')}}">登录</a>
+    </p>
+</form>
+{% endblock %}

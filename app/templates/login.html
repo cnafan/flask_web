@@ -1,0 +1,27 @@
+<!-- extend from base layout -->
+{% extends "base.html" %} {% block content %}
+<h1>登录</h1>
+<form name="login" method="POST">
+    {{form.hidden_tag()}}
+    <!--激活csrf保护-->
+    <P>
+    	*为必填项
+    </P>
+    <p>
+        {{ form.email.label }}: {{form.email}} {{form.email.errors[0]}}
+        <br>
+    </p>
+    <p>
+        {{ form.password.label }}: {{form.password}}  {{form.password.errors[0]}}
+        <br>
+    </p>
+    <p>{{form.remember_me}} 记住登录状态</p>
+    <p>
+        <input type="submit" value="登录">
+    </p>
+    <!--{{ form.submit() }}-->
+    <p>
+        新用户？<a href="{{url_for('register')}}">注册</a>
+    </p>
+</form>
+{% endblock %}
